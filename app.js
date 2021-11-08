@@ -100,6 +100,7 @@ const fullEndpoint = baseURL + endpoint + queryString;
 //or line 89
 //const fullEndpoint = `https://api.txmaze.com/shows/38963/episodebynumber?season=2&number=8`
 //=================
+//4b
 tvMazeFunc = async () => {
     try {
       const episode = await axios.get(fullEndpoint);
@@ -110,3 +111,26 @@ tvMazeFunc = async () => {
     }
   }
   tvMazeFunc();
+
+  //===========
+  //BONUS
+  //5
+  const img = document.createElement (`img`);
+  const body = document.querySelector(`body`);
+
+  axios.get(`http://pokeapi.co/api/v2/pokemon/pikachu`)
+  .then(res => {
+      console.log(`Q5`);
+    console.log(res);
+    console.log(res.data.sprites.front_default);
+    img.src = res.data.sprites.front_default;
+    body.append(img);
+  })
+
+  // OR Using Async await
+async function getPokemon(){
+    const pikachu = await axios.get(`https://pokeapi.co/api/v2/pokemon/pikachu`);
+    img.src = pikachu.data.sprites.front_default;
+    body.append(img);
+  }
+  getPokemon();
